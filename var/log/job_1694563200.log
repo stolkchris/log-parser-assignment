@@ -1,0 +1,28 @@
+[INFO] [2023-10-16T09:00:01Z] Job started: Security Scan & API Tests (Branch: feature/security-upgrade, Commit: jkl2345)
+[INFO] [2023-10-16T09:00:02Z] Setting up environment variables...
+[INFO] [2023-10-16T09:00:03Z] Detected project type: Node.js (Express API)
+[INFO] [2023-10-16T09:00:04Z] Running targets for app: user-api
+
+---
+[INFO] [2023-10-16T09:00:06Z] Target: security-scan (user-api:security-scan)
+[INFO] [2023-10-16T09:00:07Z] Invoking `npm audit` for vulnerability scanning...
+[INFO] [2023-10-16T09:00:08Z] [INFO] Found 4 high-severity vulnerabilities...
+[ERROR] [2023-10-16T09:00:11Z] [ERROR] Vulnerability 1: jsonwebtoken@8.5.0 (Prototype pollution)
+[INFO] [2023-10-16T09:00:12Z] [INFO] Resolution: Upgrade to jsonwebtoken@8.6.0 or higher
+[ERROR] [2023-10-16T09:00:13Z] [ERROR] Vulnerability 2: express@4.18.2 (Remote Code Execution)
+[INFO] [2023-10-16T09:00:14Z] [INFO] Resolution: Upgrade to express@4.18.3 or higher
+[ERROR] [2023-10-16T09:00:15Z] Target failed.
+---
+
+[INFO] [2023-10-16T09:00:17Z] Target: test-endpoints (user-api:test-endpoints)
+[INFO] [2023-10-16T09:00:18Z] Invoking `curl` to test API endpoints...
+[INFO] [2023-10-16T09:00:20Z] [INFO] Sending GET /users...
+[ERROR] [2023-10-16T09:00:22Z] [ERROR] Response code 500: Internal Server Error
+[INFO] [2023-10-16T09:00:23Z] [INFO] Stack trace:
+[INFO] [2023-10-16T09:00:24Z]     at UserRouter.js:58
+[INFO] [2023-10-16T09:00:25Z] [ERROR] Failed to retrieve user data (invalid token).
+[ERROR] [2023-10-16T09:00:26Z] Target failed.
+---
+
+[INFO] [2023-10-16T09:00:28Z] Cleaning up resources...
+[INFO] [2023-10-16T09:00:29Z] Job status: FAILED

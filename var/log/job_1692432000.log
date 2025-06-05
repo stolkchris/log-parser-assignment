@@ -1,0 +1,48 @@
+[INFO] [2023-10-15T14:00:01Z] Job started: Build & Test (Branch: dev, Commit: abc1234)
+[INFO] [2023-10-15T14:00:02Z] Setting up environment variables...
+[INFO] [2023-10-15T14:00:03Z] Detected project type: Java (Spring Boot)
+[INFO] [2023-10-15T14:00:04Z] Running targets for app: order-processor
+
+---
+[INFO] [2023-10-15T14:00:06Z] Target: build (order-processor:build)
+[INFO] [2023-10-15T14:00:07Z] Invoking `mvn clean install` to build project...
+[INFO] [2023-10-15T14:00:09Z] [INFO] Scanning for projects...
+[INFO] [2023-10-15T14:00:10Z] [INFO] --- maven-clean-plugin:3.2.0:clean (default-cli) @ order-processor ---
+[INFO] [2023-10-15T14:00:11Z] [INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ order-processor ---
+[INFO] [2023-10-15T14:00:12Z] [INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ order-processor ---
+[INFO] [2023-10-15T14:00:14Z] [INFO] --- maven-surefire-plugin:2.22.0:test (default-test) @ order-processor ---
+[INFO] [2023-10-15T14:00:16Z] [INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ order-processor ---
+[INFO] [2023-10-15T14:00:18Z] [INFO] --- maven-install-plugin:3.1.0:install (default-cli) @ order-processor ---
+[INFO] [2023-10-15T14:00:20Z] [INFO] Successfully built JAR file at target/order-processor.jar
+[INFO] [2023-10-15T14:00:22Z] Target complete.
+---
+
+[INFO] [2023-10-15T14:00:24Z] Target: test-unit (order-processor:test-unit)
+[INFO] [2023-10-15T14:00:25Z] Invoking `mvn verify` for unit tests...
+[INFO] [2023-10-15T14:00:27Z] [INFO] Running unit tests for order-processor...
+[ERROR] [2023-10-15T14:00:30Z] [ERROR] Test case `TestOrderCreation` failed.
+[INFO] [2023-10-15T14:00:31Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:00:32Z]     at OrderServiceTest.testCreateOrder(OrderServiceTest.java:45)
+[INFO] [2023-10-15T14:00:33Z] [ERROR] Expected order count to be 5, but got 4.
+[INFO] [2023-10-15T14:00:34Z] [INFO] Test case `TestDatabaseConnection` failed.
+[INFO] [2023-10-15T14:00:35Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:00:36Z]     at DatabaseTest.testConnection(DatabaseTest.java:29)
+[INFO] [2023-10-15T14:00:37Z] [ERROR] java.lang.NullPointerException at DatabaseTest.java:29
+[INFO] [2023-10-15T14:00:38Z] [INFO] Total tests passed: 27/35.
+[ERROR] [2023-10-15T14:00:39Z] Target failed.
+---
+
+[INFO] [2023-10-15T14:00:41Z] Target: test-integration (order-processor:test-integration)
+[INFO] [2023-10-15T14:00:42Z] Invoking `mvn integration-test` for end-to-end testing...
+[INFO] [2023-10-15T14:00:44Z] [INFO] Starting integration tests...
+[ERROR] [2023-10-15T14:00:47Z] [ERROR] Integration test `TestOrderProcessing` failed.
+[INFO] [2023-10-15T14:00:48Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:00:49Z]     at OrderProcessingIT.testProcessOrder(OrderProcessingIT.java:32)
+[INFO] [2023-10-15T14:00:50Z] [ERROR] Could not connect to external payment gateway (HTTP 503).
+[INFO] [2023-10-15T14:00:51Z] [INFO] Total integration tests passed: 3/5.
+[ERROR] [2023-10-15T14:00:52Z] Target failed.
+---
+
+[INFO] [2023-10-15T14:00:54Z] Cleaning up resources...
+[INFO] [2023-10-15T14:00:55Z] Job status: FAILED
+[INFO] [2023-10-15T14:00:56Z] (No failure summary included)

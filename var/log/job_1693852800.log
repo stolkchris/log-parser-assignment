@@ -1,0 +1,40 @@
+[INFO] [2023-10-15T14:30:01Z] Job started: Build & Deploy (Branch: feature/db-migration, Commit: ghi8901)
+[INFO] [2023-10-15T14:30:02Z] Setting up environment variables...
+[INFO] [2023-10-15T14:30:03Z] Detected project type: Go (Golang)
+[INFO] [2023-10-15T14:30:04Z] Running targets for app: inventory-management
+
+---
+[INFO] [2023-10-15T14:30:06Z] Target: build (inventory-management:build)
+[INFO] [2023-10-15T14:30:07Z] Invoking `go build -o bin/inventory`...
+[INFO] [2023-10-15T14:30:09Z] [INFO] Building project inventory-management...
+[INFO] [2023-10-15T14:30:11Z] [INFO] Success! Binary built at bin/inventory
+[INFO] [2023-10-15T14:30:12Z] Target complete.
+---
+
+[INFO] [2023-10-15T14:30:13Z] Target: test-integration (inventory-management:test-integration)
+[INFO] [2023-10-15T14:30:14Z] Invoking `./run-tests.sh` for integration testing...
+[INFO] [2023-10-15T14:30:16Z] [INFO] Starting integration tests...
+[ERROR] [2023-10-15T14:30:19Z] [ERROR] Test case `TestDatabaseQuery` failed.
+[INFO] [2023-10-15T14:30:20Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:30:21Z]     at DatabaseTest.go:42
+[INFO] [2023-10-15T14:30:22Z] [ERROR] Could not connect to MySQL (Error 1045: Access denied)
+[INFO] [2023-10-15T14:30:23Z] [INFO] Test case `TestInventoryUpdate` failed.
+[INFO] [2023-10-15T14:30:24Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:30:25Z]     at InventoryServiceTest.go:67
+[INFO] [2023-10-15T14:30:26Z] [ERROR] Failed to update inventory count (expected 5, received 0)
+[INFO] [2023-10-15T14:30:27Z] [INFO] Total tests passed: 2/5.
+[ERROR] [2023-10-15T14:30:28Z] Target failed.
+---
+
+[INFO] [2023-10-15T14:30:30Z] Target: deploy-production (inventory-management:deploy-production)
+[INFO] [2023-10-15T14:30:31Z] Invoking `./deploy.sh` to push image...
+[INFO] [2023-10-15T14:30:33Z] [INFO] Pushing image to Docker registry...
+[ERROR] [2023-10-15T14:30:36Z] [ERROR] Failed to push image (Error 500): Internal server error
+[INFO] [2023-10-15T14:30:37Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:30:38Z]     at ImagePusher.java:29
+[ERROR] [2023-10-15T14:30:39Z] Target failed.
+---
+
+[INFO] [2023-10-15T14:30:41Z] Cleaning up resources...
+[INFO] [2023-10-15T14:30:42Z] Job status: FAILED
+[INFO] [2023-10-15T14:30:43Z] (No failure summary included)

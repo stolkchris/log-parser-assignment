@@ -1,0 +1,38 @@
+[INFO] [2023-10-15T14:15:01Z] Job started: Security Scan & Deploy (Branch: main, Commit: def4567)
+[INFO] [2023-10-15T14:15:02Z] Setting up environment variables...
+[INFO] [2023-10-15T14:15:03Z] Detected project type: Node.js
+[INFO] [2023-10-15T14:15:04Z] Running targets for app: payment-gateway
+
+---
+[INFO] [2023-10-15T14:15:06Z] Target: security-scan (payment-gateway:security-scan)
+[INFO] [2023-10-15T14:15:07Z] Invoking `npm audit` for vulnerability scanning...
+[INFO] [2023-10-15T14:15:09Z] [INFO] Found 6 high-severity vulnerabilities...
+[ERROR] [2023-10-15T14:15:12Z] [ERROR] Vulnerability 1: jwt@1.9.0 (Prototype pollution)
+[INFO] [2023-10-15T14:15:13Z] [INFO] Resolution: Upgrade to jwt@2.0.0 or higher
+[ERROR] [2023-10-15T14:15:14Z] [ERROR] Vulnerability 2: axios@1.5.0 (HTTP smuggling)
+[INFO] [2023-10-15T14:15:15Z] [INFO] Resolution: Upgrade to axios@1.5.1 or higher
+[ERROR] [2023-10-15T14:15:16Z] [ERROR] Vulnerability 3: bcryptjs@5.0.0 (Insecure hashing)
+[INFO] [2023-10-15T14:15:17Z] [INFO] Resolution: Upgrade to bcryptjs@5.0.1 or higher
+[ERROR] [2023-10-15T14:15:18Z] Target failed.
+---
+
+[INFO] [2023-10-15T14:15:20Z] Target: build (payment-gateway:build)
+[INFO] [2023-10-15T14:15:21Z] Invoking `npm run build` to generate production assets...
+[INFO] [2023-10-15T14:15:23Z] [INFO] Building project payment-gateway...
+[INFO] [2023-10-15T14:15:25Z] [INFO] Successfully built assets in dist/
+[INFO] [2023-10-15T14:15:26Z] Target complete.
+---
+
+[INFO] [2023-10-15T14:15:27Z] Target: deploy-staging (payment-gateway:deploy-staging)
+[INFO] [2023-10-15T14:15:28Z] Invoking `kubectl apply -f deployment.yaml`...
+[INFO] [2023-10-15T14:15:30Z] [INFO] Deploying to staging...
+[ERROR] [2023-10-15T14:15:33Z] [ERROR] Service "payment-gateway" is not ready (0/1 pods running)
+[INFO] [2023-10-15T14:15:34Z] [INFO] Stack trace:
+[INFO] [2023-10-15T14:15:35Z]     at DeploymentController.java:89
+[INFO] [2023-10-15T14:15:36Z] [INFO] Pod status: CrashLoopBackOff
+[ERROR] [2023-10-15T14:15:37Z] Target failed.
+---
+
+[INFO] [2023-10-15T14:15:39Z] Cleaning up resources...
+[INFO] [2023-10-15T14:15:40Z] Job status: FAILED
+[INFO] [2023-10-15T14:15:41Z] (No failure summary included)

@@ -1,0 +1,25 @@
+[INFO] [2023-10-16T10:15:01Z] Job started: DB Migration & Deploy (Branch: feature/db-migration, Commit: mno6789)
+[INFO] [2023-10-16T10:15:02Z] Setting up environment variables...
+[INFO] [2023-10-16T10:15:03Z] Detected project type: Python (Django)
+[INFO] [2023-10-16T10:15:04Z] Running targets for app: order-service
+
+---
+[INFO] [2023-10-16T10:15:06Z] Target: migrate-database (order-service:migrate-database)
+[INFO] [2023-10-16T10:15:07Z] Invoking `python manage.py migrate`...
+[INFO] [2023-10-16T10:15:08Z] [INFO] Applying migrations...
+[ERROR] [2023-10-16T10:15:10Z] [ERROR] Migration failed at `order.models.Order` (Error 1064: You have an error in your SQL syntax).
+[INFO] [2023-10-16T10:15:11Z] [INFO] Stack trace:
+[INFO] [2023-10-16T10:15:12Z]     at migrations/0003_auto_20231016_0900.py:45
+[ERROR] [2023-10-16T10:15:13Z] Target failed.
+---
+
+[INFO] [2023-10-16T10:15:15Z] Target: deploy-prod (order-service:deploy-prod)
+[INFO] [2023-10-16T10:15:16Z] Invoking `kubectl apply -f deployment.yaml`...
+[INFO] [2023-10-16T10:15:18Z] [INFO] Deploying to production...
+[ERROR] [2023-10-16T10:15:22Z] [ERROR] Service "order-service" is not ready (0/1 pods running)
+[INFO] [2023-10-16T10:15:23Z] [INFO] Pod status: CrashLoopBackOff
+[ERROR] [2023-10-16T10:15:24Z] Target failed.
+---
+
+[INFO] [2023-10-16T10:15:26Z] Cleaning up resources...
+[INFO] [2023-10-16T10:15:27Z] Job status: FAILED

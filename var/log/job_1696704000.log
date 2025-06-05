@@ -1,0 +1,25 @@
+[INFO] [2023-10-16T15:45:01Z] Job started: Build & Deploy (Branch: feature/config-upgrade, Commit: stu6789)
+[INFO] [2023-10-16T15:45:02Z] Setting up environment variables...
+[INFO] [2023-10-16T15:45:03Z] Detected project type: Go (Golang)
+[INFO] [2023-10-16T15:45:04Z] Running targets for app: inventory-control
+
+---
+[INFO] [2023-10-16T15:45:06Z] Target: build (inventory-control:build)
+[INFO] [2023-10-16T15:45:07Z] Invoking `go build -o bin/inventory`...
+[INFO] [2023-10-16T15:45:09Z] [INFO] Building project inventory-control...
+[ERROR] [2023-10-16T15:45:11Z] [ERROR] Missing configuration file (`config.env`).
+[INFO] [2023-10-16T15:45:12Z] [INFO] Stack trace:
+[INFO] [2023-10-16T15:45:13Z]     at main.go:20
+[ERROR] [2023-10-16T15:45:14Z] Target failed.
+---
+
+[INFO] [2023-10-16T15:45:16Z] Target: deploy-staging (inventory-control:deploy-staging)
+[INFO] [2023-10-16T15:45:17Z] Invoking `kubectl apply -f deployment.yaml`...
+[INFO] [2023-10-16T15:45:19Z] [INFO] Deploying to staging...
+[ERROR] [2023-10-16T15:45:23Z] [ERROR] Service "inventory-control" is not ready (0/1 pods running)
+[INFO] [2023-10-16T15:45:24Z] [INFO] Pod status: CrashLoopBackOff
+[ERROR] [2023-10-16T15:45:25Z] Target failed.
+---
+
+[INFO] [2023-10-16T15:45:27Z] Cleaning up resources...
+[INFO] [2023-10-16T15:45:28Z] Job status: FAILED

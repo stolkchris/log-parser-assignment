@@ -1,0 +1,29 @@
+[INFO] [2023-10-16T14:30:01Z] Job started: Build & Tests (Branch: main, Commit: pqr2345)
+[INFO] [2023-10-16T14:30:02Z] Setting up environment variables...
+[INFO] [2023-10-16T14:30:03Z] Detected project type: Java (Spring Boot)
+[INFO] [2023-10-16T14:30:04Z] Running targets for app: payment-engine
+
+---
+[INFO] [2023-10-16T14:30:06Z] Target: build (payment-engine:build)
+[INFO] [2023-10-16T14:30:07Z] Invoking `mvn clean install`...
+[INFO] [2023-10-16T14:30:09Z] [INFO] Scanning for projects...
+[ERROR] [2023-10-16T14:30:12Z] [ERROR] Dependency conflict found:
+[INFO] [2023-10-16T14:30:13Z]     - Required version: 2.5
+[INFO] [2023-10-16T14:30:14Z]     - Found version: 2.3
+[INFO] [2023-10-16T14:30:15Z] [INFO] Resolution: Update `dependency-b` to 2.5
+[ERROR] [2023-10-16T14:30:16Z] Target failed.
+---
+
+[INFO] [2023-10-16T14:30:18Z] Target: test-unit (payment-engine:test-unit)
+[INFO] [2023-10-16T14:30:19Z] Invoking `mvn verify` for unit tests...
+[INFO] [2023-10-16T14:30:21Z] [INFO] Running unit tests...
+[ERROR] [2023-10-16T14:30:25Z] [ERROR] Test case `TestPaymentProcessing` failed.
+[INFO] [2023-10-16T14:30:26Z] [INFO] Stack trace:
+[INFO] [2023-10-16T14:30:27Z]     at PaymentServiceTest.testProcessPayment(PaymentServiceTest.java:65)
+[INFO] [2023-10-16T14:30:28Z] [ERROR] Expected payment to be processed but got timeout.
+[INFO] [2023-10-16T14:30:29Z] [INFO] Total tests passed: 18/25.
+[ERROR] [2023-10-16T14:30:30Z] Target failed.
+---
+
+[INFO] [2023-10-16T14:30:32Z] Cleaning up resources...
+[INFO] [2023-10-16T14:30:33Z] Job status: FAILED
